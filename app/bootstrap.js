@@ -5,8 +5,11 @@ head.ready([
 	"widget-box"
 	], function(){
 		
-		$('body').box();
-		var z =$('empty').tag({'class':'empty','alt':'hello'});
-		$('body').append(z);
+		
+		/*var tag =$('empty').tag({'class':'empty','alt':'hello'});
+		$('body').append(z);*/
+
+		var x = $('body').box({'onRemove':true});
+		console.log(x);
 	}
 );

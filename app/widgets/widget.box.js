@@ -19,18 +19,27 @@
 
 		options: { 
 			'onRemove': false,
-			'classCSS': 'uix-box'
+			'classCSS': 'uix-box',
+			'debug': true
 		},
 		_create: function() {
-			var container = _setContainer();
+			var container = this._setContainer();
+
+			this.element.append(container);
+
+			if(this.options.debug){
+				console.log(this);
+			}
+
+			return this;
 		},
 		_setOption: function( key, value ) {
 			switch( key ) {
 				case "onRemove":
-					this.options.onRemove = _setOnRemove(value);
+					this.options.onRemove = this._setOnRemove(value);
 		    break;
 		    case "classCSS":
-		    	this.options.classCSS = _setCssClass(value);
+		    	this.options.classCSS = this._setCssClass(value);
 		    break;
 		  }
 
@@ -44,23 +53,23 @@
 			}),
 				bt = $('div').tag({
 					'class': 'uix-button-remove'
-				});
-
-			bt.on('click', function(evt){
-				evt.stopPropagation();
-
-				$(this).parent().remove();
-			});
+				}).append('<i class="fa fa-times-circle"></i>');
 
 			if(this.options.onRemove){
+				bt.on('click', function(evt){
+					evt.stopPropagation();
+
+					$(this).parent().remove();
+				});
+
 				tag.append(bt);
 			}
 
 			return tag;
 		},
 		_setOnRemove: function(arg){
-			if(typeof value == "boolean"){
-				return value;
+			if(typeof arg == "boolean"){
+				return arg;
 			} else {
 				return false;
 			}

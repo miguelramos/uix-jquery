@@ -1,0 +1,21 @@
+@import "awesome/font-awesome";
+@import "compass/css3";
+
+.uix-button-remove {
+	padding: 2px;
+	cursor: pointer;
+	color: #4B4B4B;
+}
+
+.uix-box {
+	padding: 5px;
+	position: relative;
+	display: block;
+	min-height: 25px;
+
+	.uix-button-remove {
+		position: absolute;
+		top: 2px;
+		right: 2px;
+	}
+}

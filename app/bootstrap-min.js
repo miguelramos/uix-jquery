@@ -1,0 +1,1 @@
+head.ready(["jquery","jquery-ui","helpers","widget-box"],function(){var e=$("body").box({onRemove:!0});console.log(e)});
