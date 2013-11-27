@@ -17,38 +17,63 @@
 
  	$.widget( "uix.box", {
 
-		// These options will be used as defaults
 		options: { 
-			clear: null
+			'onRemove': false,
+			'classCSS': 'uix-box'
 		},
-
-		// Set up the widget
 		_create: function() {
-			var x = 1,
-			y = 2;
-
-			var z = x+y;
+			var container = _setContainer();
 		},
-
-		// Use the _setOption method to respond to changes to options
 		_setOption: function( key, value ) {
 			switch( key ) {
-				case "clear":
-		      // handle changes to clear option
-		      break;
-		    }
+				case "onRemove":
+					this.options.onRemove = _setOnRemove(value);
+		    break;
+		    case "classCSS":
+		    	this.options.classCSS = _setCssClass(value);
+		    break;
+		  }
 
-		  // In jQuery UI 1.8, you have to manually invoke the _setOption method from the base widget
 		  $.Widget.prototype._setOption.apply( this, arguments );
-		  // In jQuery UI 1.9 and above, you use the _super method instead
+
 		  this._super( "_setOption", key, value );
 		},
+		_setContainer: function(){
+			var tag = $('div').tag({
+				'class': this.options.classCSS
+			}),
+				bt = $('div').tag({
+					'class': 'uix-button-remove'
+				});
 
-		// Use the destroy method to clean up any modifications your widget has made to the DOM
+			bt.on('click', function(evt){
+				evt.stopPropagation();
+
+				$(this).parent().remove();
+			});
+
+			if(this.options.onRemove){
+				tag.append(bt);
+			}
+
+			return tag;
+		},
+		_setOnRemove: function(arg){
+			if(typeof value == "boolean"){
+				return value;
+			} else {
+				return false;
+			}
+		},
+		_setCssClass: function(arg){
+			if(typeof arg == "string"){
+				return arg;
+			} else {
+				return "uix-box";
+			}
+		},
 		destroy: function() {
-		  // In jQuery UI 1.8, you must invoke the destroy method from the base widget
 		  $.Widget.prototype.destroy.call( this );
-		  // In jQuery UI 1.9 and above, you would define _destroy instead of destroy and not call the base method
 		}
 	});
 })(jQuery);
