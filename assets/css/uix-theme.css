@@ -1740,12 +1740,36 @@
   color: #4B4B4B; }
 
 /* line 10, ../sass/uix-theme.scss */
+.js-uix-icon {
+  padding: 2px;
+  margin: 0.5% 0.5% 0;
+  float: left;
+  position: relative;
+  display: inline;
+  font-size: 32px;
+  color: #428bca;
+  border: 1px solid #CCCCCC;
+  background-color: #F7F7F9;
+  cursor: pointer; }
+
+/* line 23, ../sass/uix-theme.scss */
+.ui-icon-check {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 12px;
+  display: none;
+  background-color: #F7F7F9;
+  padding: 2px;
+  border: 1px solid #ADADAD; }
+
+/* line 34, ../sass/uix-theme.scss */
 .uix-box {
   padding: 5px;
   position: relative;
   display: block;
   min-height: 25px; }
-  /* line 16, ../sass/uix-theme.scss */
+  /* line 40, ../sass/uix-theme.scss */
   .uix-box .uix-button-remove {
     position: absolute;
     top: 2px;

@@ -7,6 +7,8 @@
  * widget.box.js
  * ------------------------------------------------------------------------------------
  *
+ * Simple widget with close button to create boxes containers.
+ * 
  * @package Widget Box
  * @author  Miguel Ramos <miguel.marques.ramos@gmail.com>
  * @link    https://www.websublime.com
@@ -20,7 +22,8 @@
 		options: { 
 			'onRemove': false,
 			'classCSS': 'uix-box',
-			'debug': true
+			'debug': false,
+			'version': '0.0.3'
 		},
 		_create: function() {
 			var container = this._setContainer();

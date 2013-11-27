@@ -2,7 +2,8 @@ head.ready([
 	"jquery", 
 	"jquery-ui",
 	"helpers",
-	"widget-box"
+	"widget-box",
+	"widget-icons"
 	], function(){
 		
 		
@@ -11,5 +12,7 @@ head.ready([
 
 		var x = $('body').box({'onRemove':true});
 		console.log(x);
+
+		$('.uix-box').icons();
 	}
 );
