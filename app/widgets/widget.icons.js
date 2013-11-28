@@ -177,6 +177,8 @@
         	]
         },
         _create: function() {
+            this._setAttributes();
+
         	var model = this._createModel(),
                 containerIcons = null,
                 hiddenIcon = $('input').tag({'name':'icon[]','type':'hidden','class':'id-icon-select'}),
@@ -196,7 +198,16 @@
             this.element.on('on.event.select', self._onColorSelect);
 
             containerIcons = this._setupIcons(map);
-            containerIcons.append(hiddenIcon).append(hiddenColor);
+
+            if(this.options.selected){
+                hiddenIcon.attr('value', this.options.selected);
+            }
+
+            if(this.options.colored){
+                hiddenColor.attr('value', this.options.colored);
+            }
+
+            containerIcons.append(hiddenIcon).append(hiddenColor).append($('div').tag({'class':'clearfix'}));
 
         	this.element.append(containerIcons);
 
@@ -205,6 +216,23 @@
             }
 
     		return this;
+        },
+        _setAttributes: function(){
+            if(this.element.data('iconItem')){
+                this._setOption('item', this.element.data('iconItem'));
+            }
+
+            if(this.element.data('iconTag')){
+                this._setOption('tag', this.element.data('iconTag'));
+            }
+
+            if(this.element.data('iconSelected')){
+                this._setOption('selected', this.element.data('iconSelected'));
+            }
+
+            if(this.element.data('iconColor')){
+                this._setOption('colored', this.element.data('iconColor'));
+            }
         },
         _setupIcons: function(map){
         	var container = $('div').tag({'class':'uix-icon-container'}),
@@ -273,9 +301,9 @@
                     icon.addClass('icon-select');
                     icon.children('.ui-icon-check').css('display','block');
 
-                    if(self.options.color){
-                        icon.css('color',self.options.color);
-                        color.css('backgroundColor', self.options.color).attr('color',self.options.color);
+                    if(self.options.colored){
+                        icon.css('color',self.options.colored);
+                        color.css('backgroundColor', self.options.colored).attr('color',self.options.colored);
                     }
                 }
 
@@ -303,7 +331,7 @@
                 this.options.selected = this._setIconSelected(value);
             break;
             case "colored":
-                this.options.colored = this._setColorSelected(value);
+                this.options.colored = this._setIconColor(value);
             break;
             case "item":
                 this.options.item = this._setItem(value);
@@ -328,8 +356,8 @@
                 return null;
             }
         },
-        __setColorSelected: function(arg){
-            if(strpos("#", this.options.color) !== false){
+        _setIconColor: function(arg){
+            if(strpos(arg, "#") !== false){
                 return arg;
             } else {
                 return null

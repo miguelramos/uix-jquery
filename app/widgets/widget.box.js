@@ -91,6 +91,14 @@
 				return "uix-box";
 			}
 		},
+		addContent: function(content){
+			this.element.children('.'+this.options.classCSS).append(content);
+		},
+		removeContent: function(tag){
+			if(this.element.find(tag)){
+				this.element.find(tag).remove();
+			}
+		},
 		destroy: function() {
 		  $.Widget.prototype.destroy.call( this );
 		}

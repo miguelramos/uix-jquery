@@ -4,11 +4,34 @@
  *	║║║║╩╣╬╠═║║║╬║╚╣║║║║╩╬╣═╣╬║║║║
  *	╚══╩═╩═╩═╩═╩═╩═╩╩╩╩╩═╩╩═╩═╩╩╩╝
  * ------------------------------------------------------------------------------------
- * helpers.js
+ * widget.map.js
  * ------------------------------------------------------------------------------------
  *
- * @package helpers
+ * @package UI MAPS
  * @author  Miguel Ramos <miguel.marques.ramos@gmail.com>
  * @link    https://www.websublime.com
  * @version 0.0.3
- */function in_array(e,t,n){var r="",i=!!n;if(i){for(r in t)if(t[r]===e)return!0}else for(r in t)if(t[r]==e)return!0;return!1}function strpos(e,t,n){var r=(e+"").indexOf(t,n||0);return r===-1?!1:r}(function(e,t){"use strict";e.fn.extend({tag:function(n){var r=t.createElement(this.selector);n=e.extend({},n);e.each(n,function(t,n){e(r).attr(t,n)});return e(r)}})})(jQuery,document);
+ */
+;(function($, undefined) {
+  $.widget( "uix.maps", {
+    options: { 
+      clear: null
+    },
+    _create: function() {
+    },
+    _setOption: function( key, value ) {
+      switch( key ) {
+        case "clear":
+          // handle changes to clear option
+          break;
+      }
+
+      $.Widget.prototype._setOption.apply( this, arguments );
+
+      this._super( "_setOption", key, value );
+    },
+    destroy: function() {
+      $.Widget.prototype.destroy.call( this );
+    }
+  });
+})(jQuery);

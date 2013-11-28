@@ -10,21 +10,24 @@
         <link rel="stylesheet" href="assets/css/map-icons.css">
         <link rel="stylesheet" href="assets/css/uix-theme.css">
         
-        <script src="vendor/head.load.min.js"></script>
-        <script>
-            // this loads jquery asyncrounously & in parallel
-            head.load([
-                {"jquery" : "vendor/jquery-1.10.2.min.js"},
-                {"jquery-ui" : "vendor/jquery-ui-1.10.3.custom.min.js"},
-                {"colors" : "vendor/colorpicker.min.js"},
-                {"helpers" : "app/helpers.js"},
-                {"widget-box" : "app/widgets/widget.box.js"},
-                {"widget-icons" : "app/widgets/widget.icons.js"},
-            ]);
-        </script>
     </head>
-    <body data-box-remove-enable="true">
-        <h1>Repo</h1>
+    <body>
+        <h1>UIX jQuery Widgets/Plugins</h1>
+        <div class="box-container"></div>
+        <hr>
+        <div class="icons-container"></div>
+        <hr>
+        <div class="widget-container"></div>
+
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="vendor/jquery-1.10.2.min.js"></script>
+        <script src="vendor/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="vendor/map-icons.min.js"></script>
+        <script src="vendor/colorpicker.min.js"></script>
+        <script src="app/helpers.js"></script>
+        <script src="app/widgets/widget.box.js"></script>
+        <script src="app/widgets/widget.icons.js"></script>
+
         <script src="app/bootstrap.js"></script>
     </body>
 </html>

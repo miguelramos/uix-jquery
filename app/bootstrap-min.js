@@ -1,1 +1,1 @@
-head.ready(["jquery","jquery-ui","colors","helpers","widget-box","widget-icons"],function(){$("body").box({onRemove:!0});$(".uix-box").icons({selected:"map-icon-art-gallery",color:"#000"})});
+$(document).ready(function(){var e,t=$(".box-container").box({removeEnable:!0});t.box("addContent","<h1>Hello World</h1>");e=$(".icons-container").box();e.box("addContent",$("div").tag({"class":"icons-maps"}).icons())});

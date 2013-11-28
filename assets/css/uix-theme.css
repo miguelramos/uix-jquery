@@ -1791,3 +1791,19 @@
     position: absolute;
     top: 2px;
     right: 2px; }
+
+/* line 66, ../sass/uix-theme.scss */
+.clearfix:before, .clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  overflow: hidden; }
+
+/* line 73, ../sass/uix-theme.scss */
+.clearfix:after {
+  clear: both; }
+
+/* line 77, ../sass/uix-theme.scss */
+.clearfix {
+  zoom: 1;
+  /* IE < 8 */ }
