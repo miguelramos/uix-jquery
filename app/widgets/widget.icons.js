@@ -299,6 +299,15 @@
             case "tag":
                 this.options.tag = this._setTag(value);
             break;
+            case "selected":
+                this.options.selected = this._setIconSelected(value);
+            break;
+            case "colored":
+                this.options.colored = this._setColorSelected(value);
+            break;
+            case "item":
+                this.options.item = this._setItem(value);
+            break;
           }
 
           $.Widget.prototype._setOption.apply( this, arguments );
@@ -310,6 +319,27 @@
                 return tag;
             } else {
                 return 'i';
+            }
+        },
+        _setIconSelected: function(arg){
+            if(in_array(arg, this.options.icons)){
+                return arg;
+            } else {
+                return null;
+            }
+        },
+        __setColorSelected: function(arg){
+            if(strpos("#", this.options.color) !== false){
+                return arg;
+            } else {
+                return null
+            }
+        },
+        _setItem: function(arg){
+            if(typeof arg == "string"){
+                return arg;
+            } else {
+                return 'div';
             }
         },
         destroy: function() {
