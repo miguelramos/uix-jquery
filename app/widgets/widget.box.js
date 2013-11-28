@@ -20,7 +20,7 @@
  	$.widget( "uix.box", {
 
 		options: { 
-			'onRemove': false,
+			'removeEnable': false,
 			'classCSS': 'uix-box',
 			'debug': false,
 			'version': '0.0.3'
@@ -36,10 +36,15 @@
 
 			return this;
 		},
+		_setAttributes: function(){
+			if(typeof this.element.data('boxRemoveEnable') == "boolean"){
+				this._setOption('removeEnable',this.element.data('boxRemoveEnable'));
+			}
+		},
 		_setOption: function( key, value ) {
 			switch( key ) {
-				case "onRemove":
-					this.options.onRemove = this._setOnRemove(value);
+				case "removeEnable":
+					this.options.removeEnable = this._setRemoveEnable(value);
 		    break;
 		    case "classCSS":
 		    	this.options.classCSS = this._setCssClass(value);
@@ -51,6 +56,8 @@
 		  this._super( "_setOption", key, value );
 		},
 		_setContainer: function(){
+			this._setAttributes();
+
 			var tag = $('div').tag({
 				'class': this.options.classCSS
 			}),
@@ -58,7 +65,7 @@
 					'class': 'uix-button-remove'
 				}).append('<i class="fa fa-times-circle"></i>');
 
-			if(this.options.onRemove){
+			if(this.options.removeEnable){
 				bt.on('click', function(evt){
 					evt.stopPropagation();
 
@@ -70,7 +77,7 @@
 
 			return tag;
 		},
-		_setOnRemove: function(arg){
+		_setRemoveEnable: function(arg){
 			if(typeof arg == "boolean"){
 				return arg;
 			} else {
