@@ -1,6 +1,7 @@
 head.ready([
 	"jquery", 
 	"jquery-ui",
+	"colors",
 	"helpers",
 	"widget-box",
 	"widget-icons"

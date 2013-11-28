@@ -20,6 +20,24 @@
 	cursor: pointer;
 }
 
+.js-uix-icon:hover {
+	.js-ui-color {
+		display: block;
+	}
+}
+
+.js-ui-color {
+	position: absolute;
+	bottom: -5px;
+	left: -5px;
+	border: 1px solid #ADADAD;
+	width: 12px;
+	height: 12px;
+	display: none;
+	background-color: #fff;
+	z-index: 1;
+}
+
 .ui-icon-check {
 	position: absolute;
 	top: -5px;

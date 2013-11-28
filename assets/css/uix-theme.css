@@ -1752,7 +1752,23 @@
   background-color: #F7F7F9;
   cursor: pointer; }
 
-/* line 23, ../sass/uix-theme.scss */
+/* line 24, ../sass/uix-theme.scss */
+.js-uix-icon:hover .js-ui-color {
+  display: block; }
+
+/* line 29, ../sass/uix-theme.scss */
+.js-ui-color {
+  position: absolute;
+  bottom: -5px;
+  left: -5px;
+  border: 1px solid #ADADAD;
+  width: 12px;
+  height: 12px;
+  display: none;
+  background-color: #fff;
+  z-index: 1; }
+
+/* line 41, ../sass/uix-theme.scss */
 .ui-icon-check {
   position: absolute;
   top: -5px;
@@ -1763,13 +1779,13 @@
   padding: 2px;
   border: 1px solid #ADADAD; }
 
-/* line 34, ../sass/uix-theme.scss */
+/* line 52, ../sass/uix-theme.scss */
 .uix-box {
   padding: 5px;
   position: relative;
   display: block;
   min-height: 25px; }
-  /* line 40, ../sass/uix-theme.scss */
+  /* line 58, ../sass/uix-theme.scss */
   .uix-box .uix-button-remove {
     position: absolute;
     top: 2px;

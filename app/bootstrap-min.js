@@ -1,1 +1,1 @@
-head.ready(["jquery","jquery-ui","helpers","widget-box","widget-icons"],function(){var e=$("body").box({onRemove:!0});console.log(e);$(".uix-box").icons()});
+head.ready(["jquery","jquery-ui","colors","helpers","widget-box","widget-icons"],function(){var e=$("body").box({onRemove:!0});console.log(e);$(".uix-box").icons()});

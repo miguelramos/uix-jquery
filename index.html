@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>REPO</title>
         <meta name="description" content="An interactive javascript study.">
-        <link rel="stylesheet" href="assets/css/colorpicker.css">
+        <link rel="stylesheet" href="assets/css/colorpicker.min.css">
         <link rel="stylesheet" href="assets/css/map-icons.css">
         <link rel="stylesheet" href="assets/css/uix-theme.css">
         
@@ -15,7 +15,8 @@
             // this loads jquery asyncrounously & in parallel
             head.load([
                 {"jquery" : "vendor/jquery-1.10.2.min.js"},
-                {"jquery-ui" : "vendor/jquery-ui-1.10.3.custom.js"},
+                {"jquery-ui" : "vendor/jquery-ui-1.10.3.custom.min.js"},
+                {"colors" : "vendor/colorpicker.min.js"},
                 {"helpers" : "app/helpers.js"},
                 {"widget-box" : "app/widgets/widget.box.js"},
                 {"widget-icons" : "app/widgets/widget.icons.js"},
