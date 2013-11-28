@@ -1,1 +1,1 @@
-$(document).ready(function(){var e,t=$(".box-container").box({removeEnable:!0});t.box("addContent","<h1>Hello World</h1>");e=$(".icons-container").box();e.box("addContent",$("div").tag({"class":"icons-maps"}).icons())});
+$(document).ready(function(){var e,t,n=$(".box-container").box({removeEnable:!0});n.box("addContent","<h1>Hello World</h1>");e=$(".icons-container").box();e.box("addContent",$("div").tag({"class":"icons-maps"}).icons());t=$(".map-container").maps()});

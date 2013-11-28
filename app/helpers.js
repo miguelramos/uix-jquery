@@ -12,23 +12,60 @@
  * @link    https://www.websublime.com
  * @version 0.0.3
  */
-;(function($, document, undefined){
-	'use strict';
+;(function($, document, undefined) {
+  'use strict';
 
-	$.fn.extend({
-		tag: function(options){
-			var element = document.createElement(this.selector);
+  $.fn.extend({
+    tag: function(options) {
+      var element = document.createElement(this.selector);
 
-			options = $.extend({}, options);
+      options = $.extend({}, options);
 
-			$.each(options, function(key, value){
-				$(element).attr(key, value);
-			});
+      $.each(options, function(key, value) {
+        $(element).attr(key, value);
+      });
 
-			return $(element);
-		}
-	});
+      return $(element);
+    }
+  });
 })(jQuery, document);
+
+;(function($, undefined) {
+  get_selector = function(element) {
+    pieces = [];
+
+    for (; element && element.tagName !== undefined; element = element.parentNode) {
+      if (element.className) {
+        var classes = element.className.split(' ');
+        for (var i in classes) {
+          if (classes.hasOwnProperty(i) && classes[i]) {
+            pieces.unshift(classes[i]);
+            pieces.unshift('.');
+          }
+        }
+      }
+      if (element.id && !/\s/.test(element.id)) {
+        pieces.unshift(element.id);
+        pieces.unshift('#');
+      }
+      pieces.unshift(element.tagName);
+      pieces.unshift(' > ');
+    }
+
+    return pieces.slice(1).join('');
+  };
+
+  $.fn.getSelector = function(only_one) {
+    if (true === only_one) {
+      return get_selector(this[0]);
+    } else {
+      return $.map(this, function(el) {
+        return get_selector(el);
+      });
+    }
+  };
+
+})(jQuery);
 
 ;function in_array (needle, haystack, argStrict) {
   // http://kevin.vanzonneveld.net

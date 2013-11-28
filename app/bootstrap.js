@@ -16,4 +16,6 @@ $(document).ready(function() {
 	boxIcons.box('addContent', $('div').tag({
 		'class': 'icons-maps'
 	}).icons());
+
+	var maps = $('.map-container').maps();
 });
