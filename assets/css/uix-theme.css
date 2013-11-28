@@ -1770,6 +1770,7 @@
 
 /* line 41, ../sass/uix-theme.scss */
 .ui-icon-check {
+  color: #428bca;
   position: absolute;
   top: -5px;
   right: -5px;
@@ -1779,13 +1780,13 @@
   padding: 2px;
   border: 1px solid #ADADAD; }
 
-/* line 52, ../sass/uix-theme.scss */
+/* line 53, ../sass/uix-theme.scss */
 .uix-box {
   padding: 5px;
   position: relative;
   display: block;
   min-height: 25px; }
-  /* line 58, ../sass/uix-theme.scss */
+  /* line 59, ../sass/uix-theme.scss */
   .uix-box .uix-button-remove {
     position: absolute;
     top: 2px;

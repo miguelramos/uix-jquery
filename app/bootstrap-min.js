@@ -1,1 +1,1 @@
-head.ready(["jquery","jquery-ui","colors","helpers","widget-box","widget-icons"],function(){$("body").box({onRemove:!0});$(".uix-box").icons()});
+head.ready(["jquery","jquery-ui","colors","helpers","widget-box","widget-icons"],function(){$("body").box({onRemove:!0});$(".uix-box").icons({selected:"map-icon-art-gallery",color:"#000"})});

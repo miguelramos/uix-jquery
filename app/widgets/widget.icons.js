@@ -215,6 +215,8 @@
         	$.each(map, function(index, icon){
                 var color = colorSelect.clone();
 
+                icon.append(itemSelect.clone());
+
                 color.on('click', function(evt){
                     evt.preventDefault();
                     evt.stopPropagation();
@@ -242,6 +244,7 @@
                             that.attr('color','#'+hex);
                             that.ColorPickerHide();
 
+                            self.options.color = '#'+hex;
                             self._trigger('select', evt, {'color': '#'+hex, 'trigger': this});
                         }
                     });
@@ -260,10 +263,21 @@
         			$(this).children('.ui-icon-check').css('display','block');
         			$(this).addClass('icon-select');
 
-        			self._trigger('check', evt, {'icon': $(self.options.tag, icon).attr('class')});
+                    self.options.selected = $(self.options.tag, icon).attr('class');
+        			self._trigger('check', evt, {'icon': self.options.selected});
         		});
 
-        		icon.append(itemSelect.clone()).append(color);
+        		icon.append(color);
+
+                if(self.options.selected && self.options.selected.localeCompare($(self.options.tag, icon).attr('class')) == 0){
+                    icon.addClass('icon-select');
+                    icon.children('.ui-icon-check').css('display','block');
+
+                    if(self.options.color){
+                        icon.css('color',self.options.color);
+                        color.css('backgroundColor', self.options.color).attr('color',self.options.color);
+                    }
+                }
 
         		container.append(icon);
         	});

@@ -13,6 +13,6 @@ head.ready([
 
 		$('body').box({'onRemove':true});
 
-		$('.uix-box').icons();
+		$('.uix-box').icons({'selected':'map-icon-art-gallery','color':'#000'});
 	}
 );
