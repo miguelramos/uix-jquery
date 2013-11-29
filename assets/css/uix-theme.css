@@ -1797,18 +1797,33 @@
   height: 300px;
   position: relative; }
 
-/* line 71, ../sass/uix-theme.scss */
+/* line 72, ../sass/uix-theme.scss */
+.marker-label,
+.marker-icon {
+  z-index: 999;
+  position: absolute;
+  display: block;
+  margin-top: -45px;
+  margin-left: -24px;
+  width: 50px;
+  height: 50px;
+  font-size: 16px !important;
+  text-align: center;
+  color: #FFFFFF;
+  white-space: nowrap; }
+
+/* line 86, ../sass/uix-theme.scss */
 .clearfix:before, .clearfix:after {
   content: ".";
   display: block;
   height: 0;
   overflow: hidden; }
 
-/* line 78, ../sass/uix-theme.scss */
+/* line 93, ../sass/uix-theme.scss */
 .clearfix:after {
   clear: both; }
 
-/* line 82, ../sass/uix-theme.scss */
+/* line 97, ../sass/uix-theme.scss */
 .clearfix {
   zoom: 1;
   /* IE < 8 */ }

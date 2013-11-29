@@ -17,5 +17,6 @@ $(document).ready(function() {
 		'class': 'icons-maps'
 	}).icons());
 
-	var maps = $('.map-container').maps();
+	var gmap = $('.map-container').maps();
+	gmap.maps('addMarker',{});
 });
