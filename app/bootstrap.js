@@ -17,6 +17,27 @@ $(document).ready(function() {
 		'class': 'icons-maps'
 	}).icons());
 
-	var gmap = $('.map-container').maps();
-	gmap.maps('addMarker',{});
+	/*var gmap = $('.map-container').maps();
+	gmap.maps('addMarker',{});*/
+
+	var $map = $('.map-container').gmaps();
+	$map.gmaps('addMarker', {
+		'zIndex': 9,
+		'title': 'Map Icons',
+		'position': '41.358773, -8.753555',
+		'icon': {
+			path: MAP_PIN,
+			fillColor: '#0E77E9',
+			fillOpacity: 1,
+			strokeColor: '#fff',
+			strokeWeight: 2,
+			scale: 1 / 3
+		},
+		'label': '<i class="map-icon-school"></i>'
+	})
+	$map.on('click', function(evt) {
+		evt.stopPropagation();
+		
+		alert('marker');
+	});
 });
