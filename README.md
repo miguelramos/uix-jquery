@@ -1,4 +1,4 @@
-Welcome to UIX jQuery!	{#welcome}
+Welcome to UIX jQuery!	
 =====================
 
 
@@ -6,6 +6,17 @@ UIX jQuery is a collection of widgets, plugins to use in projects. Dependencies 
 
 ----------
 
+Extended Tag
+---------
+
+The extended tag permits create html tags more easier. Just a enhancement to jquery to create tag elements.
+
+> **NOTE:** Example: 
+
+    $('div').tag({'class':'mydiv'});
+$('input').tag({'type':'text', 'name':'myinput', 'placeholder':'a input'});
+
+----------
 
 Widget Box
 ---------
@@ -28,10 +39,10 @@ The widget icons is an collection of svg icons from [Map-Icons][1] that have the
 ----------
 
 
-Widget Maps
+Widget GMaps
 -----------
 
-The widget maps will construct a simple google maps and add the ability to use the object create by the api of google maps
+The widget gmaps will construct a simple google maps and add the ability to use the object create by the api of google maps
 
 > **NOTE:** Examples and code will be were soon.
 
