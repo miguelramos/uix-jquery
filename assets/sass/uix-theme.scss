@@ -63,6 +63,19 @@
 	}
 }
 
+.uix-collapse {
+  color: #4B4B4B;
+
+  i {
+    cursor: pointer;
+    float: right;
+  }
+
+  .uix-collapse-title {
+    float: left;
+  }
+}
+
 .uix-container-maps {
 	height: 300px;
 	position: relative;

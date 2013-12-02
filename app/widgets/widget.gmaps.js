@@ -154,7 +154,6 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
             var that = this;
 
             var Overlay = function (settings) {
-                var self = this;
 
                 this.setValues(settings);
 

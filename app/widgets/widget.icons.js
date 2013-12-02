@@ -24,6 +24,8 @@
             'item': 'div',
             'selected': null,
             'colored': null,
+            'visible': false,
+            'visibleTitle': 'Icon Chooser',
             'icons': [
                 'map-icon-art-gallery',
                 'map-icon-campground',
@@ -178,6 +180,7 @@
         },
         _create: function() {
             this._setAttributes();
+            this._collapse();
 
             var model = this._createModel(),
                 containerIcons = null,
@@ -342,7 +345,43 @@
                 container.append(icon);
             });
 
+            if(this.options.visible){
+                container.css('display','block');
+            } else {
+                container.css('display','none');
+            }
+
             return container;
+        },
+        _collapse: function(){
+            var collapse = $('div').tag({'class':'uix-collapse'}),
+                iconCollapse = $('i').tag({'class':'fa'}),
+                header = $('header').tag({'class':'uix-collapse-title'}),
+                fix = $('div').tag({'class':'clearfix'});
+
+            header.append(this.options.visibleTitle);
+
+            if(this.option.visible){
+                iconCollapse.addClass('fa-caret-square-o-up');
+            } else {
+                iconCollapse.addClass('fa-caret-square-o-down');
+            }
+
+            iconCollapse.on('click',function(evt){
+                evt.stopPropagation();
+
+                if($('div.uix-icon-container').is(":visible")){
+                    $(this).addClass('fa-caret-square-o-down').removeClass('fa-caret-square-o-up');
+                } else {
+                    $(this).addClass('fa-caret-square-o-up').removeClass('fa-caret-square-o-down');
+                }
+
+                $('div.uix-icon-container').slideToggle(300);
+            });
+
+            collapse.append(iconCollapse).append(header).append(fix);
+
+            this.element.append(collapse);
         },
         _onIconSelect: function(evt, args) {
             $(this).find('input.id-icon-select').attr('value', args.icon);
@@ -369,6 +408,9 @@
                     break;
                 case "item":
                     this.options.item = this._setItem(value);
+                    break;
+                case "visible":
+                    this.options.visible = this._setIconCollapse(value);
                     break;
             }
 
@@ -402,6 +444,13 @@
                 return arg;
             } else {
                 return 'div';
+            }
+        },
+        _setIconCollapse: function(arg){
+            if(typeof arg == "boolean"){
+                return arg;
+            } else {
+                return false;
             }
         },
         destroy: function() {

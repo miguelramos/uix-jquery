@@ -54,7 +54,9 @@ $(document).ready(function() {
 			scale: 1 / 3
 		},
 		'label': '<i class="map-icon-post-office"></i>'
-	}).click(function(evt) {
-            $('.map-container').gmaps('openInfoWindow', {'content': 'Hello World!'}, this);
+	}).click(function(marker) {
+            $('.map-container').gmaps('openInfoWindow', {'content': 'Hello World!'}, this, function(iw){
+                console.log(iw);
+            });
 	});
 });
