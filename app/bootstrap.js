@@ -34,10 +34,27 @@ $(document).ready(function() {
 			scale: 1 / 3
 		},
 		'label': '<i class="map-icon-school"></i>'
-	})
-	$map.on('click', function(evt) {
-		evt.stopPropagation();
+	}).click(function(evt) {
+		console.log(this);
+		//evt.stopPropagation();
 		
 		alert('marker');
+	});
+
+	$map.gmaps('addMarker', {
+		'zIndex': 9,
+		'title': 'Map Icons',
+		'position': '41.41674, -8.50125',
+		'icon': {
+			path: MAP_PIN,
+			fillColor: '#0E77E9',
+			fillOpacity: 1,
+			strokeColor: '#fff',
+			strokeWeight: 2,
+			scale: 1 / 3
+		},
+		'label': '<i class="map-icon-post-office"></i>'
+	}).click(function(evt) {
+            $('.map-container').gmaps('openInfoWindow', {'content': 'Hello World!'}, this);
 	});
 });

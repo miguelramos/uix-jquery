@@ -14,7 +14,7 @@ The extended tag permits create html tags more easier. Just a enhancement to jqu
 > **NOTE:** Example: 
 
     $('div').tag({'class':'mydiv'});
-$('input').tag({'type':'text', 'name':'myinput', 'placeholder':'a input'});
+		$('input').tag({'type':'text', 'name':'myinput', 'placeholder':'a input'});
 
 ----------
 
