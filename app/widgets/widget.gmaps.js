@@ -26,6 +26,7 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
             'iconSize': 16,
             'iconColor': '#fff',
             'iconSymbol': null,
+            'enableInfoBox': true,
             'google': {
                 'zoom': 12,
                 'center': new google.maps.LatLng(41.358773, -8.753555),
@@ -79,6 +80,8 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
                 case "iconSymbol":
                     this.options.iconSymbol = this._setIconSymbol(value);
                     break;
+                case "enableInfoBox":
+                    this.options.enableInfoBox = this._setEnableInfoBox(value);
             }
 
             $.Widget.prototype._setOption.apply(this, arguments);
@@ -103,6 +106,13 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
             } else {
                 return null;
             }
+        },
+        _setEnableInfoBox: function(arg){
+          if(typeof arg == "boolean"){
+              return arg;
+          } else {
+              return true;
+          }
         },
         addBounds: function (position) {
             var bounds = this.get('bounds', new google.maps.LatLngBounds());
@@ -138,9 +148,17 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
             return $(marker);
         },
         openInfoWindow: function(infoWindowOptions, marker, callback) {
-            var iw = this.get('iw', infoWindowOptions.infoWindow || new google.maps.InfoWindow);
+
+            if(this.options.enableInfoBox){
+                var iw = this.get('iw', infoWindowOptions.infoWindow || new InfoBox());
+                infoWindowOptions = this._createInfoBox(infoWindowOptions);
+            } else {
+                var iw = this.get('iw', infoWindowOptions.infoWindow || new google.maps.InfoWindow);
+            }
+
             iw.setOptions(infoWindowOptions);
             iw.open(this.get('map'), this._unwrap(marker));
+
             this._call(callback, iw);
             return this;
         },
@@ -149,6 +167,54 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
                 this.get('iw').close();
             }
             return this;
+        },
+        _createInfoBox: function(settings){
+            var me = this.get('iw');
+
+            var defaults = {
+                disableAutoPan: false,
+                maxWidth: 0,
+                pixelOffset: new google.maps.Size(-225, -70),
+                alignBottom: true,
+                zIndex: null,
+                closeBoxMargin: "10px 2px 2px 2px",
+                closeBoxURL: "",
+                infoBoxClearance: new google.maps.Size(1, 1),
+                isHidden: false,
+                pane: "floatPane",
+                enableEventPropagation: false
+            };
+
+            settings = $.extend(defaults, settings);
+
+            var container = $('div').tag({'class':'uix-info-box'}),
+                boxTitle = $('header').tag({'class':'uix-info-head'}),
+                boxContent = $('div').tag({'class':'uix-info-content'}),
+                boxCaret = $('div').tag({'class':'uix-info-caret'}).append('<i class="fa fa-caret-down"></i>'),
+                closeCaret = $('i').tag({'class':'fa fa-times'}).css('cursor','pointer');
+
+            google.maps.event.addListener(me, 'domready', function() {
+                google.maps.event.addDomListener(document.querySelector('.fa-times'), "click", function(evt){
+                    evt.cancelBubble = true;
+
+                    if (evt.stopPropagation) {
+                        evt.stopPropagation();
+                    }
+
+                    google.maps.event.trigger(me, "closeclick");
+
+                    me.close();
+                });
+            });
+
+            boxContent.append(settings.content);
+            boxTitle.append(settings.title).append(closeCaret);
+
+            container.append(boxTitle).append(boxContent).append(boxCaret);
+
+            settings.content = container.get(0).outerHTML;
+
+            return settings;
         },
         _overlay: function (options) {
             var that = this;
