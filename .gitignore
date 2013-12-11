@@ -4,3 +4,5 @@ codekit-config.json
 config.rb
 /v0.1/
 .idea
+/uix.sublime-project
+/uix.sublime-workspace

@@ -124,10 +124,11 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
             options.map = this.get('map');
             options.position = this._latLng(options.position);
 
-            var marker = new (options.marker || google.maps.Marker)(options);
-            var markers = this.get('markers');
+            var marker = new (options.marker || google.maps.Marker)(options),
+                markers = this.get('markers'),
+                overlays = this.get('overlays');
 
-            this._overlay({
+            var overlay = this._overlay({
                 'map': options.map,
                 'marker': marker,
                 'text': options.label
@@ -142,6 +143,8 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
             if (marker.bounds) {
                 this.addBounds(marker.getPosition());
             }
+
+            overlays.push(overlay);
 
             this._call(callback, options.map, marker);
 
@@ -187,7 +190,7 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
 
             settings = $.extend(defaults, settings);
 
-            var container = $('div').tag({'class':'uix-info-box'}),
+            var container = $('div').tag({'class':'uix-info-box animated fadeInDown'}),
                 boxTitle = $('header').tag({'class':'uix-info-head'}),
                 boxContent = $('div').tag({'class':'uix-info-content'}),
                 boxCaret = $('div').tag({'class':'uix-info-caret'}).append('<i class="fa fa-caret-down"></i>'),
@@ -247,6 +250,15 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
                         google.maps.event.addListener(this, 'zindex_changed', function () {
                             self.draw();
                         }),
+                        google.maps.event.addListener(this, 'map_changed', function () {
+                            console.log('marker');
+                        }),
+                        google.maps.event.addListener(this, 'cluster_init', function () {
+                            var label = $(this.get('text')).addClass('hidden');
+                            this.text = label.get(0).outerHTML;
+
+                            console.log(this);
+                        }),
                     ];
                 },
                 onRemove: function () {
@@ -269,7 +281,7 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
                     container.style.display = 'block';
                     container.style.position = 'absolute';
                     container.style.color = iconColor;
-                    container.style.zIndex = 999;//this.get('zIndex')+10;
+                    container.style.zIndex = this.get('zIndex');
                     container.style.whiteSpace = 'nowrap';
                     container.style.textAlign = 'center';
 
@@ -282,6 +294,58 @@ var ROUNDED = 'M50-80c0-11-9-20-20-20h-60c-11 0-20 9-20 20v60c0 11 9 20 20 20h60
             //markerLabel.bindTo('text', options.marker, 'position');
 
             return markerLabel;
+        },
+        addCluster: function(options, callback){
+            var cluster = this.get('cl', options.cluster || new MarkerClusterer()),
+                markers = this.get('markers'),
+                overlays = this.get('overlays'),
+                map = this.get('map');
+
+            /*$.each(markers, function(index, marker){
+                var label = marker.label;
+                label = $(label).addClass('hidden');
+                marker.label = label.get(0).outerHTML;
+                google.maps.event.trigger(marker, 'text_changed');
+                console.log(marker);
+            });*/
+
+            cluster.setMap(map);
+            cluster.addMarkers(markers);
+
+            google.maps.event.addListener(this.get('map'), 'zoom_changed', function() {
+                /*console.log(cluster.getClusters());
+                console.log(cluster.get("minZoom"));
+                console.log(this.get('zoom'));*/
+
+                $.each(overlays, function(index, overlay){
+                    google.maps.event.trigger(overlay, 'map_changed');
+                });
+            });
+
+            /*google.maps.event.addListener(this.get('map'), "idle", function () {
+                console.log(this);
+            });*/
+
+            /*google.maps.event.addDomListener(window, 'load', function(){
+                console.log($(this).find('.marker-label'));
+            });*/
+
+            google.maps.event.addListener(cluster, "clusteringend", function () {
+                $.each(overlays, function(index, overlay){
+                    google.maps.event.trigger(overlay, 'cluster_init');
+                });
+            });
+
+            /*google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+                //this part runs when the mapobject is created and rendered
+                $.each($(this.getDiv()).find('.marker-label'), function(index, marker){
+                    $(marker).addClass('hidden');
+                });
+            });*/
+
+            this._call(callback, cluster);
+
+            return cluster;
         },
         get: function (key, value) {
             var instance = this.instance;

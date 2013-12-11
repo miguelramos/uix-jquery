@@ -1836,24 +1836,27 @@
   -moz-border-radius-topright: 3px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px; }
+  /* line 112, ../sass/uix-theme.scss */
+  .uix-info-head i {
+    float: right; }
 
-/* line 113, ../sass/uix-theme.scss */
+/* line 117, ../sass/uix-theme.scss */
 .uix-info-content {
   padding: 10px;
   line-height: 1.6em; }
 
-/* line 118, ../sass/uix-theme.scss */
+/* line 122, ../sass/uix-theme.scss */
 .uix-info-caret {
   display: block;
   position: absolute;
   left: 215px;
   margin-top: -15px;
   color: #fff; }
-  /* line 125, ../sass/uix-theme.scss */
+  /* line 129, ../sass/uix-theme.scss */
   .uix-info-caret i {
     font-size: 40px; }
 
-/* line 131, ../sass/uix-theme.scss */
+/* line 135, ../sass/uix-theme.scss */
 .marker-label,
 .marker-icon {
   z-index: 999;
@@ -1868,18 +1871,22 @@
   color: #FFFFFF;
   white-space: nowrap; }
 
-/* line 145, ../sass/uix-theme.scss */
+/* line 149, ../sass/uix-theme.scss */
+.hidden {
+  display: none !important; }
+
+/* line 153, ../sass/uix-theme.scss */
 .clearfix:before, .clearfix:after {
   content: ".";
   display: block;
   height: 0;
   overflow: hidden; }
 
-/* line 152, ../sass/uix-theme.scss */
+/* line 160, ../sass/uix-theme.scss */
 .clearfix:after {
   clear: both; }
 
-/* line 156, ../sass/uix-theme.scss */
+/* line 164, ../sass/uix-theme.scss */
 .clearfix {
   zoom: 1;
   /* IE < 8 */ }

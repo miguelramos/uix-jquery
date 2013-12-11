@@ -44,7 +44,7 @@ $(document).ready(function() {
 	$map.gmaps('addMarker', {
 		'zIndex': 9,
 		'title': 'Map Icons',
-		'position': '41.41674, -8.50125',
+		'position': '41.358773, -8.753405',
 		'icon': {
 			path: MAP_PIN,
 			fillColor: '#0E77E9',
@@ -55,9 +55,14 @@ $(document).ready(function() {
 		},
 		'label': '<i class="map-icon-post-office"></i>'
 	}).click(function(marker) {
-            $('.map-container').gmaps('openInfoWindow', {'content': 'Hello World!', 'title': 'Hello on this land.'}, this, function(iw){
+            $('.map-container').gmaps('openInfoWindow', {
+                    'content': "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+                    'title': 'Hello on this land.'
+                }, this, function(iw){
                 //console.log(iw);
             });
             //console.log(marker);
 	});
+
+    $map.gmaps('addCluster',{});
 });
